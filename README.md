@@ -89,6 +89,20 @@ Starting migrations
 alembic upgrade head
 ```
 
+## Starting application
+
+Building
+```
+docker build -t back_end .
+```
+
+Running
+```
+docker run -p 8080:8080 -it back_end
+```
+
+#### Swagger available to http://0.0.0.0:8080/docs
+
 ## Author 
 [Artem Solovev](https://github.com/sav116)
 
