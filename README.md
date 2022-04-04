@@ -1,14 +1,14 @@
 # REST API with FastAPI, PostgreSQL, Alembic, SQLAlchemy and Minio (S3 cloud storage)
 
-FastAPI is a Python framework and set of tools that allow developers to invoke commonly used functions using a REST interface. 
+[FastAPI](https://fastapi.tiangolo.com/) is a Python framework and set of tools that allow developers to invoke commonly used functions using a REST interface. 
 
-SQLAlchemy is a package that makes it easier for Python programs to communicate with databases. Most of the time, this library is used as an Object Relational Mapper (ORM) tool, which automatically converts function calls to SQL queries and translates Python classes to tables on relational databases.
+[SQLAlchemy](https://www.sqlalchemy.org/) is a package that makes it easier for Python programs to communicate with databases. Most of the time, this library is used as an Object Relational Mapper (ORM) tool, which automatically converts function calls to SQL queries and translates Python classes to tables on relational databases.
 
-Many web, mobile, geospatial, and analytics applications use PostgreSQL as their primary data storage or data warehouse.
+Many web, mobile, geospatial, and analytics applications use [PostgreSQL](https://www.postgresql.org/) as their primary data storage or data warehouse.
 
-Alembic is a lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python.
+[Alembic](https://alembic.sqlalchemy.org/en/latest/) is a lightweight database migration tool for usage with the SQLAlchemy Database Toolkit for Python.
 
-Minio is a popular open source object storage server compatible with Amazon S3 cloud storage.
+[Minio](https://min.io/) is a popular open source object storage server compatible with Amazon S3 cloud storage.
 
 ## How to run the REST API
 Get this project from Github
@@ -86,7 +86,7 @@ cd REST-API && pip install alembic psycopg2 environs
 
 Creating new schema version
 ```
- alembic revision --autogenerate -m "added table items"
+alembic revision --autogenerate -m "added table items"
 ```
 
 Starting migrations
