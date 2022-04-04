@@ -79,6 +79,11 @@ Creating bucket
 
 ## Migration db schema using Alembic
 
+Installing Alembic
+```
+cd REST-API && pip install alembic
+```
+
 Creating new schema version
 ```
  alembic revision --autogenerate -m "added table items"
@@ -89,16 +94,10 @@ Starting migrations
 alembic upgrade head
 ```
 
-## Starting application
+## Building and starting application
 
-Building
 ```
-docker build -t back_end .
-```
-
-Running
-```
-docker run -p 8080:8080 -it back_end
+docker build -t back_end . && docker run -p 8080:8080 -it back_end
 ```
 
 #### Swagger available to http://0.0.0.0:8080/docs
