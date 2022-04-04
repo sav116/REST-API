@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+      - s3
+    ports:
+      - "8000:8000"
+    environment:
+      TEST: "True"
+    command: sh -c "while ! nc -z db 5432; do sleep 1; done; sleep 15 && alembic upgrade head && pytest"
+  
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mlcm
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  s3:
+    image: minio/minio
+    container_name: myminio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server --address ":9000" --console-address ":9001" /data
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - s3
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc config host add myminio http://myminio:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/mlcm;
+      sleep 999;
+      exit 0;
+      "
