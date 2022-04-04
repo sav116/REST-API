@@ -73,8 +73,8 @@ chmod +x mc && mv mc minio-client
 
 Creating bucket
 ```
-minio-client alias set minio http://localhost:9000 minioadmin minioadmin
-minio-client mb minio/$MINIO_BUCKET
+./minio-client alias set minio http://localhost:9000 minioadmin minioadmin
+./minio-client mb minio/$MINIO_BUCKET
 ``` 
 
 ## Migration db schema using Alembic
