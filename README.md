@@ -81,7 +81,7 @@ Creating bucket
 
 Installing Alembic
 ```
-cd REST-API && pip install alembic
+cd REST-API && pip install alembic psycopg2 environs
 ```
 
 Creating new schema version
