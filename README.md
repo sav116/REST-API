@@ -14,7 +14,6 @@ Minio is a popular open source object storage server compatible with Amazon S3 c
 Get this project from Github
 ``` 
 git clone https://github.com/sav116/RESTful-API
- 
 ```
 
 ### Installing PostgreSQL
@@ -31,7 +30,7 @@ Creating directory for volume of database
 mkdir $SRC_DB_DATA
 ```
 
-Start db container
+Starting db container
 ```
 docker run -d --name my_postgres \
  -v $SRC_DB_DATA:/var/lib/postgresql/data -p 5432:5432 \
@@ -41,37 +40,55 @@ docker run -d --name my_postgres \
  postgres:14
 ```
 
+### Installing Minio
+Adding environment variables
+```
+SRC_MINIO_DATA=~/minio_data
+MINIO_BUCKET=bucket
+```
 
-### Create a virtual environment
-This can be done with 
-``` python -m venv env ```
+Starting minio container
+```
+docker run --name my_minio -d -v $SRC_MINIO_DATA:/data \
+  -p 9000:9000 \
+  -p 9001:9001 \
+  minio/minio server /data --console-address ":9001"
+```
 
-activate the virtual environment with 
+## Installing minio-client for creating bucket
+OS X:
+```
+wget https://dl.minio.io/client/mc/release/darwin-amd64/mc
+```
 
+Linux:
+```
+wget https://dl.minio.io/client/mc/release/linux-amd64/mc
+```
+
+Making executable and rename it 
+```
+chmod +x mc && mv mc minio-client
+```
+
+Creating bucket
+```
+minio-client alias set minio http://localhost:9000 minioadmin minioadmin
+minio-client mb minio/$MINIO_BUCKET
 ``` 
-env/bin/activate
+
+## Migration db schema using Alembic
+
+Creating new schema version
+```
+ alembic revision --autogenerate -m "added table items"
 ```
 
-or 
-
+Starting migrations
 ```
-env\Scripts\activate
+alembic upgrade head
 ```
-
-
-
-### Install the requirements 
-
-``` 
-pip install -r requirements.txt
-```
-
-### Create the database
-``` python create_db.py ```
-
-## Run the API
-``` python main.py ```
 
 ## Author 
-[Ssali Jonathan](https://github.com/jod35)
+[Artem Solovev](https://github.com/sav116)
 
