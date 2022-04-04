@@ -13,7 +13,7 @@ Many web, mobile, geospatial, and analytics applications use [PostgreSQL](https:
 ## How to run the REST API
 Get this project from Github
 ``` 
-git clone https://github.com/sav116/RESTful-API
+git clone https://github.com/sav116/REST-API
 ```
 
 ### Installing PostgreSQL
