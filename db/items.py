@@ -1,5 +1,5 @@
 from db.base import Base
-from sqlalchemy.dialects.postgresql import UUID, TEXT, TIMESTAMP, INTEGER, BOOLEAN
+from sqlalchemy.dialects.postgresql import TEXT, INTEGER, BOOLEAN
 from sqlalchemy import Column, MetaData
 
 metadata = MetaData()

@@ -8,8 +8,12 @@ from core.config import BUCKET, ACCESS_KEY, SECRET_KEY, ENDPOINT_URL
 class S3Loader:
     """ Loader for s3 """
 
-    def __init__(self, dir_path: str = None, file_path: str = None, files: list = None,
-                 bucket: str = BUCKET):
+    def __init__(
+            self,
+            dir_path: str = None,
+            file_path: str = None,
+            files: list = None,
+            bucket: str = BUCKET):
         self.dir_path = dir_path
         self.files = files
         self.bucket = bucket
@@ -24,11 +28,13 @@ class S3Loader:
             self.objects = self._get_list_objects()
 
     def _get_list_objects(self):
-        return self._client.list_objects(Bucket=self.bucket, Prefix=self.dir_path)
+        return self._client.list_objects(
+            Bucket=self.bucket, Prefix=self.dir_path)
 
     def _get_object(self):
         try:
-            return self._client.get_object(Bucket=self.bucket, Key=self.file_path)
+            return self._client.get_object(
+                Bucket=self.bucket, Key=self.file_path)
         except ClientError:
             return None
 
@@ -61,13 +67,17 @@ class S3Loader:
     def upload_files(self) -> bool:
         for file in self.files:
             try:
-                self._client.upload_fileobj(file.file, self.bucket, self.file_path + '/' + file.filename)
+                self._client.upload_fileobj(
+                    file.file, self.bucket,
+                    self.file_path + '/' + file.filename)
             except ClientError:
                 return False
         return True
 
     def update_file(self) -> None:
-        return self._client.upload_fileobj(self.files[0].file, self.bucket, self.file_path)
+        return self._client.upload_fileobj(
+            self.files[0].file, self.bucket, self.file_path)
 
     def delete_file(self) -> Dict:
-        return self._client.delete_object(Bucket=self.bucket, Key=self.file_path)
+        return self._client.delete_object(
+            Bucket=self.bucket, Key=self.file_path)

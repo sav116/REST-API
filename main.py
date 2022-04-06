@@ -1,13 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.openapi.docs import get_swagger_ui_html
-import os
 
 from core.config import SERVER_HOST, SERVER_PORT
 from endpoints import items, s3, liveness_probe
 
-app = FastAPI(openapi_url="/api/v1/openapi.json", swagger_ui_oauth2_redirect_url="/api/v1/docs/oauth2-redirect")
-
+app = FastAPI(openapi_url="/api/v1/openapi.json",
+              swagger_ui_oauth2_redirect_url="/api/v1/docs/oauth2-redirect")
 
 app.include_router(s3.router)
 app.include_router(liveness_probe.router)

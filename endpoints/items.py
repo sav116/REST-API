@@ -1,4 +1,3 @@
-from typing import List
 from fastapi import APIRouter, status, HTTPException, Depends
 from sqlalchemy.orm import Session
 
@@ -15,7 +14,8 @@ async def get_all(db: Session = Depends(get_db)):
     return db.query(dbItem).all()
 
 
-@router.get('/item/{item_id}', response_model=Item, status_code=status.HTTP_200_OK)
+@router.get('/item/{item_id}', response_model=Item,
+            status_code=status.HTTP_200_OK)
 async def get_by_id(item_id: int,
                     db: Session = Depends(get_db)):
     return db.query(dbItem).filter(dbItem.id == item_id).first()
@@ -43,7 +43,8 @@ async def create(item: Item,
     return new_item
 
 
-@router.put('/item/{item_id}', response_model=Item, status_code=status.HTTP_200_OK)
+@router.put('/item/{item_id}', response_model=Item,
+            status_code=status.HTTP_200_OK)
 async def update(item_id: int,
                  item: Item,
                  db: Session = Depends(get_db)):
@@ -64,7 +65,9 @@ async def delete(item_id: int,
     item_to_delete = db.query(dbItem).filter(dbItem.id == item_id).first()
 
     if item_to_delete is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resource Not Found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Resource Not Found")
 
     db.delete(item_to_delete)
     db.commit()
