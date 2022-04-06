@@ -1,5 +1,5 @@
 # REST API
-![flake8-linter](https://github.com/sav116/REST-API/actions/workflows/flake8.yml)
+![flake8-linter](https://github.com/sav116/REST-API/actions/workflows/flake8.yml/badge.svg)
 
 # REST API with FastAPI, PostgreSQL, Alembic, SQLAlchemy and Minio (S3 cloud storage)
 
