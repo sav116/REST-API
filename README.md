@@ -1,3 +1,6 @@
+# REST API
+![linter-flake8](https://github.com/sav116/REAST-API/workflows/flake8.yml/badge.svg)
+
 # REST API with FastAPI, PostgreSQL, Alembic, SQLAlchemy and Minio (S3 cloud storage)
 
 [FastAPI](https://fastapi.tiangolo.com/) is a Python framework and set of tools that allow developers to invoke commonly used functions using a REST interface. 
