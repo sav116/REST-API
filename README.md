@@ -26,6 +26,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 ```
 
+
 Creating directory for volume of database
 ```
 mkdir $SRC_DB_DATA
