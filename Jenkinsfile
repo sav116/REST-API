@@ -2,16 +2,6 @@
 
 node('cloud-agent') {
 
-  withEnv(["REGISTRY=nexus.do.neoflex.ru:8083",
-          "REPOSITORY=mlops-repo",
-          "PROJECT=portal-backend",
-          "HELM_PROJECT=helm-charts",
-          "HELM_REPO=https://neogit.neoflex.ru/neoflex-mlops-center",
-          "HELM_CHART=portal-backend",
-          "INIT_CONTAINER=false",
-          "DOCKER_FILE=Dockerfile"
-          ]){
-
   stage('Clone'){
     container('kaniko') {
       checkout scm
