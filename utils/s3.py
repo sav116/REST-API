@@ -4,7 +4,6 @@ import boto3
 
 from core.config import BUCKET, ACCESS_KEY, SECRET_KEY, ENDPOINT_URL
 
-
 class S3Loader:
     """ Loader for s3 """
 
